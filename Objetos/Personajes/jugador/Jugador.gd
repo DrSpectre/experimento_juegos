@@ -47,8 +47,7 @@ func asesinar():
 func _interactuar(objeto):
 	if objeto and objeto.is_in_group("interactuar"):
 		objeto.iniciar_interaccion()
-	# if objeto and objeto.is_in_group("interactuable"):
-	# 	objeto.interaccion()
+
 
 func _on_Area2D_body_entered(body):
 	if "Enemigo" in body.name:
