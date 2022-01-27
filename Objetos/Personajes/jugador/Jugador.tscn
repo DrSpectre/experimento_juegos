@@ -48,5 +48,13 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaccion_objetos"]
 shape = SubResource( 3 )
 
+[node name="Verificacion_interaccion" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 50, 0 )
+collision_mask = 16
+collide_with_areas = true
+collide_with_bodies = false
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="area_entered" from="interaccion_objetos" to="." method="_on_interaccion_objetos_area_entered"]
+[connection signal="area_exited" from="interaccion_objetos" to="." method="_on_interaccion_objetos_area_exited"]

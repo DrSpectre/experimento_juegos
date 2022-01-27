@@ -4,8 +4,9 @@ export(float) var velocidad_movimiento = 500
 const velocidad_bala = 2000
 
 var bala = preload("res://Objetos/Personajes/jugador/Bala.tscn")
+onready var rayo_de_interaccion = $Verificacion_interaccion
 
-var objbetos_interactuables = null
+var objetos_interactuables = null
 
 func _ready():
 	pass 
@@ -25,7 +26,7 @@ func _physics_process(delta):
 		disparar()
 	
 	if Input.is_action_just_pressed("interaccion"):
-		_interactuar(objbetos_interactuables)
+		_interactuar(objetos_interactuables)
 
 func disparar():
 	look_at(get_global_mouse_position())
@@ -44,7 +45,7 @@ func asesinar():
 	pass 
 
 func _interactuar(objeto):
-	if objeto.is_in_group("interactuar"):
+	if objeto and objeto.is_in_group("interactuar"):
 		objeto.iniciar_interaccion()
 	# if objeto and objeto.is_in_group("interactuable"):
 	# 	objeto.interaccion()
@@ -59,4 +60,16 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_interaccion_objetos_area_entered(area):
-	objbetos_interactuables = area.get_owner()
+	var estado_espacio = get_world_2d().direct_space_state
+	
+	# intersect_ray(from: Vector3, to: Vector3, exclude: Array = [  ], collision_mask: int = 0x7FFFFFFF, collide_with_bodies: bool = true, collide_with_areas: bool = false)
+	var res = estado_espacio.intersect_ray(global_position, area.global_position, [self], area.collision_layer, true, true)
+	
+	if res.collider == area:
+		objetos_interactuables = area.get_owner()
+
+func _on_interaccion_objetos_area_exited(area):
+	var raiz = area.get_owner()
+	
+	if objetos_interactuables == raiz:
+		objetos_interactuables = null
