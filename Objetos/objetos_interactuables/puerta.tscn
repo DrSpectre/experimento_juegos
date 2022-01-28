@@ -10,7 +10,7 @@ extents = Vector2( 16, 4 )
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( 0, -3, 32, -3, 32, 3, 0, 3 )
 
-[node name="puerta" type="RigidBody2D" groups=["interactuable"]]
+[node name="puerta" type="RigidBody2D" groups=["obstaculo"]]
 mode = 1
 script = ExtResource( 2 )
 

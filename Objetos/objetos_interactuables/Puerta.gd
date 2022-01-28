@@ -5,7 +5,7 @@ onready var sistema_control = $controlador
 export(float) var velocidad = 1.5
 
 export(bool) var abierta = false
-export(NodePath) var controlador_exterior
+export(Array, NodePath) var controladores_exteriores
 
 
 func _ready():
@@ -18,7 +18,10 @@ func _ready():
 	set_physics_process(false)
 	
 	sistema_control.connect("iniciar_proceso", self, "interaccion")
-	get_node(controlador_exterior).connect("iniciar_proceso", self, "interaccion")
+	
+	# Universal Node Locator
+	for unl in controladores_exteriores:
+		get_node(unl).connect("iniciar_proceso", self, "interaccion")
 
 func _physics_process(delta):
 	if abierta:
