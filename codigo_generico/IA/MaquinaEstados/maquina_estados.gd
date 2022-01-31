@@ -1,6 +1,5 @@
 extends Node
 
-
 signal estado_cambiado(estado_actual)
 
 
@@ -46,8 +45,8 @@ func activar(valor):
 func _unhandled_input(event):
 	estado_actual.manejar_entrada(event)
 
-func sensores_activados(objeto):
-	estado_actual.manejar_sensores(objeto)
+func sensores_activados(data):
+	estado_actual.manejar_sensores(data)
 
 func _physics_process(delta):
 	estado_actual.actualizar(delta)
@@ -59,7 +58,7 @@ func _cambiar_estado(estado):
 	if not _activo:
 		return
 
-	estado_actual.salir()
+	objetos_almacenados = estado_actual.salir()
 
 	if estado == "anterior":
 		pila_estados.pop_front()
@@ -72,6 +71,7 @@ func _cambiar_estado(estado):
 	if estado != "anterior":
 		if objetos_almacenados:
 			estado_actual.entrar(objetos_almacenados)
+	
 		else:
 			estado_actual.entrar()
 
@@ -82,4 +82,4 @@ func conectar(nodo, senyal, funcion_delegada):
 	var err = nodo.connect(senyal, self, funcion_delegada)
 
 	if err:
-		printerr("Error en maquina_estados.gd. Error: " + err)
+		printerr("Error en maquina_estados.gd. Error: " + str(err))
