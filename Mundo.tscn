@@ -1,12 +1,14 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://Objetos/Personajes/jugador/Jugador.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Objetos/Personajes/Enemigo/Enemigo.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objetos/Personajes/Enemigo(MEF)/enemigo(mef).tscn" type="PackedScene" id=2]
 [ext_resource path="res://img/pared.png" type="Texture" id=3]
 [ext_resource path="res://img/suelo.png" type="Texture" id=4]
 [ext_resource path="res://Objetos/objetos_interactuables/puerta.tscn" type="PackedScene" id=5]
 [ext_resource path="res://img/pared_tile.png" type="Texture" id=6]
 [ext_resource path="res://Objetos/objetos_interactuables/indicador_interaccion.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objetos/objetos_interactuables/consola.tscn" type="PackedScene" id=8]
+[ext_resource path="res://codigo_generico/entorno_utilidades/sistema_control_por_fps.gd" type="Script" id=9]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -501,14 +503,19 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 } ]
 2/z_index = 0
 
+[sub_resource type="NativeScript" id=85]
+resource_name = "crt"
+class_name = "crt"
+
 [node name="Mundo" type="Node2D"]
+script = ExtResource( 9 )
 
 [node name="Navigation2D" type="Navigation2D" parent="." groups=["atlas_navegacion"]]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TileMap" type="TileMap" parent="Navigation2D"]
+[node name="mosaicos_nivel" type="TileMap" parent="Navigation2D"]
 tile_set = SubResource( 3 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 17
@@ -526,22 +533,33 @@ smoothing_enabled = true
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
-
-[node name="Enemigo" parent="." instance=ExtResource( 2 )]
-position = Vector2( 557, 152 )
-velocidad = 150.0
-umbral = 2.5
+script = SubResource( 85 )
 
 [node name="puerta" parent="." instance=ExtResource( 5 )]
 position = Vector2( 272, 232 )
-controlador_exterior = NodePath("../indicador_interaccion")
 
 [node name="puerta2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 352, 311 )
-controlador_exterior = NodePath("../indicador_interaccion2")
+controladores_exteriores = [ NodePath("../indicador_interaccion2"), NodePath("../indicador_interaccion3") ]
 
 [node name="indicador_interaccion" parent="." instance=ExtResource( 7 )]
 position = Vector2( 344, 203 )
 
 [node name="indicador_interaccion2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 461, 301 )
+position = Vector2( 399, 325 )
+
+[node name="indicador_interaccion3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 398, 299 )
+
+[node name="Enemigo1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 729, 121 )
+
+[node name="consola" parent="." instance=ExtResource( 8 )]
+position = Vector2( 398, 296 )
+rotation = -1.5711
+controladores_externos = [ NodePath("../indicador_interaccion2"), NodePath("../indicador_interaccion3") ]
+
+[node name="consola2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 399, 327 )
+rotation = 1.5708
+controladores_externos = [ NodePath("../indicador_interaccion2"), NodePath("../indicador_interaccion3") ]
