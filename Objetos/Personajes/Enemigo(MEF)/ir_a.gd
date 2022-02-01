@@ -15,39 +15,46 @@ var hilo = null
 
 var data_salida = []
 
-var instrucciones = {
-	"sensor": {
-		"vision_corta": {"exito": ["jugador"], "fallo": ["puerta", "obstaculo"]},
-	}
-}
+var instrucciones = {}
 
 func _ready():
-	objetivo = obtener_nodo("jugador")
 	navegacion = obtener_nodo("atlas_navegacion")
 
 	marioneta = get_owner()	
 	marioneta.connect("actualizar_camino", self, "actualizar_ruta")
 
 func entrar(parametros = false):
+	print(parametros)
+	instrucciones = parametros
+	
+	objetivo = parametros["objetivo"]
+	
 	actualizar_ruta()
 
 func actualizar(delta):
 	navegar()
 
-
 func salir():
 	return data_salida
 
 func manejar_sensores(data):
+	if not data:
+		return 
+	
+	print(data)
+	var etiquetas_sensado = data[1].get_groups()
+	print(instrucciones["sensor"])
 	if data[0] in instrucciones["sensor"]:
 		for etiqueta in instrucciones["sensor"][data[0]]["exito"]:
-			if etiqueta in data[1].get_groups():
+			if etiquetas_sensado and etiqueta in etiquetas_sensado:
 				data_salida = ["data", "exito", data[1]]
+				print("-*****-*->>>")
 				emit_signal("finalizado", "quieto")
 		
 		for etiqueta in instrucciones["sensor"][data[0]]["fallo"]:
-			if etiqueta in data[1].get_groups():
+			if etiquetas_sensado and etiqueta in etiquetas_sensado:
 				data_salida = ["data", "fallo", data[1]]
+				print("---------->>>")
 				emit_signal("finalizado", "quieto")
 
 func almacenar(objeto):

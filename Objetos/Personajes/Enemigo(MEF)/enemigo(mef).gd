@@ -47,6 +47,7 @@ func obtener_nodo(nombre, numero_lista = 0):
 	return null
 
 func _actualizar_sensores(objeto):
+	print(objeto)
 	pass
 
 # Respuesta a señales exteriores o interiores

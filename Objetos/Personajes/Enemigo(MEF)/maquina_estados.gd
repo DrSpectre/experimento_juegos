@@ -14,14 +14,14 @@ func _ready():
 	marioneta = get_owner()
 	marioneta.connect("sensor_activado", self, "_actualizar_sensores")
 	
-	estado_inicio = ir_a
+	estado_inicio = quieto
 	
 	mapa_estados = {
 		"quieto": quieto,
 		# "buscar": buscar,
 		"ir_a": ir_a,
 		# "interactuar": interactuar,
-		# "atacar": atacar,
+		"atacar": atacar,
 		"paralizado": paralizado,
 	}
 
