@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://img/enemigo.png" type="Texture" id=1]
 [ext_resource path="res://Objetos/Personajes/Enemigo(MEF)/maquina_estados.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Objetos/Personajes/Enemigo(MEF)/interactuar.gd" type="Script" id=7]
 [ext_resource path="res://Objetos/Personajes/Enemigo(MEF)/atacar.gd" type="Script" id=8]
 [ext_resource path="res://Objetos/Personajes/Enemigo(MEF)/paralizado.gd" type="Script" id=9]
+[ext_resource path="res://img/golpe_enemigo.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 8.0
@@ -17,6 +18,10 @@ radius = 8.0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 9, 9 )
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 3.0
+height = 2.0
 
 [node name="Enemigo" type="KinematicBody2D" groups=["enemigo"]]
 script = ExtResource( 3 )
@@ -36,7 +41,7 @@ shape = SubResource( 2 )
 
 [node name="maquina_estados" type="Node" parent="."]
 script = ExtResource( 2 )
-estado_inicio = NodePath("ir_a")
+estado_inicio = NodePath("quieto")
 
 [node name="quieto" type="Node" parent="maquina_estados"]
 script = ExtResource( 6 )
@@ -52,6 +57,16 @@ script = ExtResource( 7 )
 
 [node name="atacar" type="Node" parent="maquina_estados"]
 script = ExtResource( 8 )
+
+[node name="ataque" type="Sprite" parent="maquina_estados/atacar"]
+texture = ExtResource( 10 )
+
+[node name="zona_ataque" type="Area2D" parent="maquina_estados/atacar/ataque"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="maquina_estados/atacar/ataque/zona_ataque"]
+position = Vector2( 2, 0 )
+rotation = 1.57079
+shape = SubResource( 6 )
 
 [node name="paralizado" type="Node" parent="maquina_estados"]
 script = ExtResource( 9 )
