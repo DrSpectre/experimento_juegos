@@ -24,19 +24,21 @@ shape = SubResource( 1 )
 self_modulate = Color( 0.105882, 0.12549, 0.87451, 1 )
 texture = ExtResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="jugador_piel_enemigos" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jugador_piel_enemigos"]
 shape = SubResource( 2 )
 
-[node name="Light2D" type="Light2D" parent="."]
+[node name="linterna" type="Light2D" parent="."]
 texture = ExtResource( 3 )
 offset = Vector2( 120, 0 )
 texture_scale = 1.84
 color = Color( 0.764706, 0.0352941, 0.0352941, 1 )
 shadow_enabled = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="camara_vision" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.6, 0.6 )
 smoothing_enabled = true
@@ -55,6 +57,6 @@ collision_mask = 16
 collide_with_areas = true
 collide_with_bodies = false
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="jugador_piel_enemigos" to="." method="_on_Area2D_body_entered"]
 [connection signal="area_entered" from="interaccion_objetos" to="." method="_on_interaccion_objetos_area_entered"]
 [connection signal="area_exited" from="interaccion_objetos" to="." method="_on_interaccion_objetos_area_exited"]
