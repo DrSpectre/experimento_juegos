@@ -51,8 +51,10 @@ func sensores_activados(data):
 func _physics_process(delta):
 	estado_actual.actualizar(delta)
 	
+	"""
 	if objetos_almacenados:
 		estado_actual.manejar_sensores(objetos_almacenados)
+	"""
 
 func _cambiar_estado(estado):
 	if not _activo:
