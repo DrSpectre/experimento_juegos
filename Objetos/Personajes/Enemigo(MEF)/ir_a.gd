@@ -24,7 +24,10 @@ func _ready():
 	marioneta.connect("actualizar_camino", self, "actualizar_ruta")
 
 func entrar(parametros = false):
-	print(parametros)
+	if not parametros:
+		return
+	
+	# print(parametros)
 	instrucciones = parametros
 	
 	objetivo = parametros["objetivo"]
@@ -41,20 +44,17 @@ func manejar_sensores(data):
 	if not data:
 		return 
 	
-	print(data)
 	var etiquetas_sensado = data[1].get_groups()
 	print(instrucciones["sensor"])
 	if data[0] in instrucciones["sensor"]:
 		for etiqueta in instrucciones["sensor"][data[0]]["exito"]:
 			if etiquetas_sensado and etiqueta in etiquetas_sensado:
 				data_salida = ["data", "exito", data[1]]
-				print("-*****-*->>>")
 				emit_signal("finalizado", "quieto")
 		
 		for etiqueta in instrucciones["sensor"][data[0]]["fallo"]:
 			if etiquetas_sensado and etiqueta in etiquetas_sensado:
 				data_salida = ["data", "fallo", data[1]]
-				print("---------->>>")
 				emit_signal("finalizado", "quieto")
 
 func almacenar(objeto):

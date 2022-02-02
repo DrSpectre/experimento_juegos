@@ -15,6 +15,10 @@ onready var sensor_area = $Sensores/pseudo_vision
 onready var rayo_frontal = $Sensores/vision_corta
 onready var tempo = $tempo
 
+# Para ataques y cosas similares
+onready var brazo_inf = $brazo_inf
+onready var brazo_sup = $brazo_sup
+
 func _ready():
 	set_process(false)
 	set_physics_process(false)
