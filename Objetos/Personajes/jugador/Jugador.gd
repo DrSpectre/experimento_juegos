@@ -50,9 +50,7 @@ func _interactuar(objeto):
 
 
 func _on_Area2D_body_entered(body):
-	if "Enemigo" in body.name:
-		asesinar()
-
+	print(body.get_groups())
 
 # para cambbiar de nivel soo es necesario la linea
 # get_tree().change_scene("res://scene_b.tscn") // la ubicacion de res://[ruta y nombre de la escenna].tscn
