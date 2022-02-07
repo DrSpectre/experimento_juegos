@@ -63,10 +63,8 @@ func _on_interaccion_objetos_area_entered(area):
 	var res = estado_espacio.intersect_ray(global_position, area.global_position, [self], area.collision_layer, true, true)
 	
 	if res.collider == area:
-		objetos_interactuables = area.get_owner()
+		objetos_interactuables = area
 
 func _on_interaccion_objetos_area_exited(area):
-	var raiz = area.get_owner()
-	
-	if objetos_interactuables == raiz:
+	if objetos_interactuables == area:
 		objetos_interactuables = null
