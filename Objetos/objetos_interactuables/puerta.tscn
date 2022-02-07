@@ -31,6 +31,9 @@ __meta__ = {
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="controlador" type="Node" parent="."]
 script = ExtResource( 3 )
