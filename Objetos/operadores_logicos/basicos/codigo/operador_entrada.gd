@@ -4,15 +4,14 @@ extends "res://codigo_generico/operadores_logicos/base_operador_logico.gd"
 export(NodePath) var conexion_fisica
 export(bool) var trampa = false
 
-var enlace = null
 var activado: bool = false
 
 func _ready():
-	if not enlace:
+	if not conexion_fisica:
 		printerr("Error: Enlace no proporcionado en (" + name + ")")
 		return
 	
-	enlace = get_node(conexion_fisica)
+	var enlace = get_node(conexion_fisica)
 	
 	if enlace.is_in_group("accionador"):
 		enlace.connect("iniciar_proceso", self, "_logica_entrada")
