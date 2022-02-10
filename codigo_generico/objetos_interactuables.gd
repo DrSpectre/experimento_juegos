@@ -6,6 +6,7 @@ signal iniciar_proceso()
 export(String) var llave_interna = ""
 
 func _ready():
+	add_to_group("accionador")
 	set_physics_process(false)
 	set_process(false)
 

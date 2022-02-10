@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Objetos/operadores_logicos/basicos/codigo/operador_control_flujo.gd" type="Script" id=1]
+
+[node name="control_flujo" type="Node"]
+script = ExtResource( 1 )
