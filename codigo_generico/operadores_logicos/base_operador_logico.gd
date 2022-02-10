@@ -17,6 +17,9 @@ export(bool) var negado = false
 var _hijos:Array = []
 
 func _ready():
+	if negado:
+		cascada = true
+	
 	var hijos =  get_children()
 	
 	for hijo in hijos:
@@ -44,8 +47,4 @@ func _actualizar():
 	pass
 
 func actualizar_estado():
-	if negado:
-		emit_signal("cambio_estado", not estado)
-	
-	else:
 		emit_signal("cambio_estado", estado)

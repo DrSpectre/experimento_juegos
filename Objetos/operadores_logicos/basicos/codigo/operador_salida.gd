@@ -8,9 +8,17 @@ func _ready():
 		printerr("Salida logica conn mas de una entrada, reducir entradas")
 
 func _logica_interna(entrada):
+	if negado:
+		estado = not estado
+	
 	estado = entrada
 	
-	emit_signal("iniciar_proceso")
+	if negado:
+		estado = not estado
+	
+	if estado:
+		emit_signal("iniciar_proceso")
+	
 	actualizar_estado()
 
 func _actualizar():

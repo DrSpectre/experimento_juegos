@@ -4,6 +4,9 @@ func _logica_interna(entrada):
 	_actualizar()
 
 func _actualizar():
+	if negado:
+		estado = not estado
+	
 	var nuevo_estado: bool = false
 
 	for hijo in _hijos:
@@ -11,6 +14,10 @@ func _actualizar():
 			nuevo_estado = true
 			break
 	
-	if not (nuevo_estado == estado):
+	if nuevo_estado != estado:
 		estado = nuevo_estado
+		
+		if negado:
+			estado = not estado
+		
 		actualizar_estado()

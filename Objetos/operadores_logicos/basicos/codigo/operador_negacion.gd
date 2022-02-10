@@ -4,6 +4,10 @@ func _ready():
 	if _hijos.size() > 1:
 		printerr("Error logico, este operador no admite mas de una conexion")
 	
+	if not _hijos:
+		printerr("Error: Hijos no encontrados en (" + name + ")")
+		return 
+	
 	estado = not _hijos[0].estado
 
 func _logica_interna(entrada):
