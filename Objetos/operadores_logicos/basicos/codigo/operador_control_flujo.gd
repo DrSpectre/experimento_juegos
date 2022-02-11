@@ -9,7 +9,7 @@ func _ready():
 		return
 	
 	var enlace_externo = get_node(enlace)
-	
+
 	if enlace_externo.is_in_group(tipo_base):
 		enlace_externo.connect("cambio_estado", self, "_logica_interna")
 	
