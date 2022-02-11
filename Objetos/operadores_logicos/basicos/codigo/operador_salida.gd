@@ -16,8 +16,7 @@ func _logica_interna(entrada):
 	if negado:
 		estado = not estado
 	
-	if estado:
-		emit_signal("iniciar_proceso")
+	emit_signal("iniciar_proceso")
 	
 	actualizar_estado()
 
