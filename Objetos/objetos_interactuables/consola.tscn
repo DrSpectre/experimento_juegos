@@ -4,7 +4,7 @@
 [ext_resource path="res://Objetos/objetos_interactuables/consola.gd" type="Script" id=2]
 [ext_resource path="res://img/jkgq0hs1.bmp" type="Texture" id=3]
 
-[node name="consola" type="Node2D"]
+[node name="consola" type="Node2D" groups=["mostrar_estatus"]]
 script = ExtResource( 2 )
 
 [node name="img" type="Sprite" parent="."]

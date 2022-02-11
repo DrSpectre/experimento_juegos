@@ -12,14 +12,20 @@ onready var luz = $luz_led
 
 func _ready():
 	actualizar_luz()
+	
 	for unl in controladores_externos:
 		get_node(unl).connect("iniciar_proceso", self, "_activar_consola")
 	
 	set_physics_process(false)
 	set_process(false)
 
-func _activar_consola():
-	activado = !activado
+func _activar_consola(entrada = 0):
+	if typeof(entrada) == typeof(2):
+		activado = !activado
+	
+	else:
+		activado = entrada
+
 	actualizar_luz()
 
 func actualizar_luz():
@@ -31,3 +37,6 @@ func actualizar_luz():
 	
 	luz.update()
 	luz.energy = 0.5
+
+func conectar(objeto, senyal):
+	objeto.connect(senyal, self, "_activar_consola")
