@@ -34,8 +34,8 @@ func obtener_nodos(nombre):
  
 	if arbol.has_group(nombre):
 		return arbol.get_nodes_in_group(nombre)
-
-	return null
+	
+	return []
 
 func eliminar_muertos(muerto):
 	var del = lista_enemigos.find(muerto) + 1
