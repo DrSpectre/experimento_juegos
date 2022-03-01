@@ -10,6 +10,7 @@ extents = Vector2( 4, 2 )
 extents = Vector2( 5, 3 )
 
 [node name="Bala" type="RigidBody2D"]
+gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
