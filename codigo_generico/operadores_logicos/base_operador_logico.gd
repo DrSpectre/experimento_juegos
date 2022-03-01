@@ -27,7 +27,7 @@ func _ready():
 			_hijos.append(hijo)
 	
 	if not tipo_base in get_groups():
-		add_to_group(tipo_base)
+		add_to_group(tipo_base, true)
 	
 	for hijo in _hijos:
 		if hijo.is_in_group("operador_logico"):

@@ -11,7 +11,6 @@ func _actualizar():
 
 	for hijo in _hijos:
 		if not hijo.estado:
-
 			nuevo_estado = true
 			break
 	

@@ -5,6 +5,7 @@ enum tipos_puerta {
 	tipo_traslacion
 }
 
+
 onready var sistema_control = $controlador
 export(float) var velocidad = -1.5
 
@@ -52,7 +53,7 @@ func _physics_process(delta):
 		if abs(position.x - mem_data.x) >= tope:
 			abierta = true
 			set_physics_process(false)
-			
+		
 		else:
 			position.x = position.x + velocidad
 
@@ -72,15 +73,6 @@ func _physics_process(delta):
 		else:
 			position.x = position.x - velocidad
 
-"""
-	else:
-		if rotation_degrees <= 0:
-			abierta = false
-			set_physics_process(false)
-
-		else:
-			rotation_degrees = rotation_degrees - velocidad
-"""
 func interaccion():
 	set_physics_process(true)
 	abierta = not abierta
