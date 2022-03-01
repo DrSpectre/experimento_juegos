@@ -7,6 +7,8 @@ var objetivo = null
 var navegacion = null
 var camino: = [Vector2(0, 0)]
 
+var requiere_actualizar_camino = false
+
 export(float) var umbral = 2.5
 
 var marioneta = null
@@ -22,6 +24,9 @@ func _ready():
 
 	marioneta = get_owner()	
 	marioneta.connect("actualizar_camino", self, "actualizar_ruta")
+	
+	if not navegacion:
+		printerr("Atlas de navegacion no encontrado. Resolver conficto")
 
 func entrar(parametros = false):
 	if not parametros:
@@ -32,6 +37,9 @@ func entrar(parametros = false):
 	
 	objetivo = parametros["objetivo"]
 	
+	if parametros["tipo"] == "movil":
+		requiere_actualizar_camino = true
+		
 	actualizar_ruta()
 
 func actualizar(delta):
@@ -79,7 +87,7 @@ func navegar():
 	marioneta.moverse(movimiento)
 
 func actualizar_ruta():
-	if objetivo and camino and navegacion:
+	if requiere_actualizar_camino and objetivo:
 		if objetivo.global_position.distance_to(camino[-1]) > umbral:
 			camino = navegacion.get_simple_path(marioneta.global_position, objetivo.global_position, false)
 

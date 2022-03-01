@@ -20,7 +20,7 @@ func _ready():
 		"quieto": quieto,
 		# "buscar": buscar,
 		"ir_a": ir_a,
-		# "interactuar": interactuar,
+		"interactuar": interactuar,
 		"atacar": atacar,
 		"paralizado": paralizado,
 	}

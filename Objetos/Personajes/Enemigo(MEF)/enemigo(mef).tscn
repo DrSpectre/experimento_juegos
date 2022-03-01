@@ -63,8 +63,10 @@ script = ExtResource( 9 )
 [node name="Sensores" type="Node2D" parent="."]
 
 [node name="pseudo_vision" type="Area2D" parent="Sensores"]
+collision_layer = 17
+collision_mask = 17
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sensores/pseudo_vision"]
+[node name="forma_vision" type="CollisionPolygon2D" parent="Sensores/pseudo_vision"]
 position = Vector2( 62.0625, -8.14869 )
 scale = Vector2( 1.20276, 0.927632 )
 polygon = PoolVector2Array( 161.244, 146.77, 267.665, 8.7844, 161.244, -129.201, -51.6, 8.7844 )
