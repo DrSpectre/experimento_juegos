@@ -1,7 +1,7 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://Objetos/Personajes/jugador/Jugador.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Objetos/Personajes/Enemigo(MEF)/enemigo(mef).tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objetos/Personajes/Enemigo/Enemigo.tscn" type="PackedScene" id=2]
 [ext_resource path="res://img/pared.png" type="Texture" id=3]
 [ext_resource path="res://img/suelo.png" type="Texture" id=4]
 [ext_resource path="res://Objetos/objetos_interactuables/puerta.tscn" type="PackedScene" id=5]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Objetos/objetos_interactuables/indicador_interaccion.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objetos/objetos_interactuables/consola.tscn" type="PackedScene" id=8]
 [ext_resource path="res://codigo_generico/entorno_utilidades/sistema_control_por_fps.gd" type="Script" id=9]
+[ext_resource path="res://Objetos/Personajes/Enemigo(MEFv2)/enemigo(mefv2).tscn" type="PackedScene" id=10]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -508,6 +509,7 @@ resource_name = "crt"
 class_name = "crt"
 
 [node name="Mundo" type="Node2D"]
+position = Vector2( 0, -1 )
 script = ExtResource( 9 )
 
 [node name="Navigation2D" type="Navigation2D" parent="." groups=["atlas_navegacion"]]
@@ -557,11 +559,33 @@ position = Vector2( 399, 327 )
 rotation = 1.5708
 controladores_externos = [ NodePath("../indicador_interaccion2"), NodePath("../indicador_interaccion3") ]
 
-[node name="Enemigo1" parent="." instance=ExtResource( 2 )]
-position = Vector2( 609, 603 )
-rotation = -2.25209
-
 [node name="consola" parent="." instance=ExtResource( 8 )]
 position = Vector2( 398, 296 )
 rotation = -1.5711
 controladores_externos = [ NodePath("../indicador_interaccion2"), NodePath("../indicador_interaccion3") ]
+
+[node name="EnemigoV2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 428, 559 )
+
+[node name="Enemigo" parent="." instance=ExtResource( 2 )]
+position = Vector2( 423, 379 )
+
+[node name="punto_interes" type="Node" parent="."]
+
+[node name="punto_1" type="Position2D" parent="punto_interes" groups=["puntos_de_patrulla"]]
+position = Vector2( 73, 635 )
+
+[node name="punto_2" type="Position2D" parent="punto_interes" groups=["puntos_de_patrulla"]]
+position = Vector2( 1364, 83 )
+
+[node name="punto_3" type="Position2D" parent="punto_interes" groups=["puntos_de_patrulla"]]
+position = Vector2( 119, 1093 )
+
+[node name="punto_5" type="Position2D" parent="punto_interes" groups=["puntos_de_patrulla"]]
+position = Vector2( 905, 115 )
+
+[node name="punto_6" type="Position2D" parent="punto_interes" groups=["puntos_de_patrulla"]]
+position = Vector2( 761, 711 )
+
+[node name="punto_4" type="Position2D" parent="punto_interes" groups=["puntos_de_patrulla"]]
+position = Vector2( 1385, 1113 )

@@ -2,10 +2,10 @@ extends Node
 
 # Linea base de interfaz para maquinas de estado
 
-signal finalizado(siguiente_estado_maquina, lo_hizo, parametros)
+signal finalizado(siguiente_estado_maquina, parametros)
 signal almacenar(objeto)
 
-func entrar(parametros = false):
+func entrar(parametros):
 	pass
 
 func actualizar(delta):
@@ -22,3 +22,4 @@ func almacenar(objeto):
 	
 func manejar_entrada(_event):
 	pass
+

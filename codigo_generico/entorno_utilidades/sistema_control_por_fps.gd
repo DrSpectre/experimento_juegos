@@ -16,7 +16,7 @@ func _ready():
 
 func _process(delta):
 	if lista_pendientes.size() > 0 and actualizar:
-		lista_pendientes[0].emitir_senyal_actuaizacion()
+		lista_pendientes[0].actualizar_dif()
 		lista_pendientes.remove(0)
 	
 	if lista_pendientes.size() == 0:
@@ -34,16 +34,16 @@ func obtener_nodos(nombre):
  
 	if arbol.has_group(nombre):
 		return arbol.get_nodes_in_group(nombre)
-	
+
 	return []
 
 func eliminar_muertos(muerto):
 	var del = lista_enemigos.find(muerto) + 1
 	if del:
 		lista_enemigos.remove(del - 1)
-	
+
 	del = lista_pendientes.find(muerto) + 1
 	if del:
 		lista_pendientes.remove(del - 1)
-	
+
 	# lista_pendientes = lista_enemigos.duplicate()

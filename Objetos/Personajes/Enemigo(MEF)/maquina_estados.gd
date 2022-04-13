@@ -25,6 +25,7 @@ func _ready():
 		"paralizado": paralizado,
 	}
 
+
 func _cambiar_estado(estado_nuevo):
 	if not _activo:
 		return
